@@ -1,8 +1,18 @@
+  name: sqlite-storag0
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: python-svc-3
+  name: python-service-c
   namespace: argocd
+
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: python-service-c=d4rkghost47/python-circuit-svc-3
+    argocd-image-updater.argoproj.io/python-service-c.update-strategy: newest-build
+    argocd-image-updater.argoproj.io/python-service-c.helm.image-name: image.repository
+    argocd-image-updater.argoproj.io/python-service-c.helm.image-tag: image.tag
+    argocd-image-updater.argoproj.io/write-back-method: git
+    argocd-image-updater.argoproj.io/git-branch: main
+    argocd-image-updater.argoproj.io/write-back-target: helmvalues:values.yaml
 
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -21,7 +31,7 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: circuit-breaker-app
+    namespace: circuit-breaker-app-v2
 
   syncPolicy:
     automated:

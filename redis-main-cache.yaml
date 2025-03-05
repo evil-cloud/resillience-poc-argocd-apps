@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   destination:
-    namespace: circuit-breaker-app
+    namespace: circuit-breaker-app-v2
     server: 'https://kubernetes.default.svc'
 
   sources:
